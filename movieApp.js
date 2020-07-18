@@ -5,17 +5,30 @@ template.innerHTML = `
 		h3 {
 			color:blue;
 		}
-		img {
-			height:  50%;
-		}
+				
 		#show-info {
 			color: #fff;
 			border-radius: 5px;
-			color: purple;
+			color: brown;
+			background-color:black;
+		}
+	   img {
+		  margin-top: 8px;
+		  vertical-align: middle;
+		  width: 100%;
+		}
+		.wrapper{
+			border-radius: 10px;
+			border: 2px solid yellow;
+			padding: 10px;
+		}
+		#info-text{
+			color: greenyellow;
 		}
 	</style>
-	<div>
+	<div class="wrapper">
 	<img />
+	
 	<div>
 		<h3></h3>
 	</div>
@@ -28,7 +41,6 @@ template.innerHTML = `
 		
 	</div>
 	<button id='show-info'>Show info</button>
-	
 	</div>
 
 `;
@@ -55,7 +67,7 @@ class MovieInfo extends HTMLElement{
 		const info = this.shadowRoot.querySelector('#info-text')
 		const btn = this.shadowRoot.querySelector('#show-info');
 		if(this.showInfo){
-			const movieId = 'tt1201607';
+			const movieId = this.getAttribute('movieId');
 			const requestUrl =
 			'http://www.omdbapi.com?i='+movieId+'&apikey=thewdb';
 		
@@ -66,7 +78,7 @@ class MovieInfo extends HTMLElement{
 			this.shadowRoot.querySelector('#genre').innerText = 'Genre: ' + json.Genre;
 			this.shadowRoot.querySelector('#actor').innerText = 'Actors: ' + json.Actors;
 			this.shadowRoot.querySelector('#director').innerText = 'Director: ' + json.Director;
-			this.shadowRoot.querySelector('#awards').innerText = 'Genre: ' + json.Awards;
+			this.shadowRoot.querySelector('#awards').innerText = 'Awards: ' + json.Awards;
 			info.style.display = 'block';
 			btn.innerText = "Hide Info";
 		} else {
