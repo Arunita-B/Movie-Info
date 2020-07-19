@@ -59,7 +59,6 @@ class MovieInfo extends HTMLElement{
 		this.render();
 	}
 	render(){
-	  let myname = this.getAttribute('name');
 	  this.shadowRoot.querySelector('#show-info').addEventListener('click', () => this.getInfo());
 	}
 	
